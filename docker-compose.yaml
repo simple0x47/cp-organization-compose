@@ -1,23 +1,5 @@
 version: '3'
 services:
-  rabbitmq:
-    image: rabbitmq:3.12-management
-    container_name: rabbitmq
-    ports:
-      - 5672:5672
-    environment:
-      - RABBITMQ_DEFAULT_USER
-      - RABBITMQ_DEFAULT_PASS
-  mongodb:
-    image: mongo:6.0
-    container_name: mongodb
-    ports:
-      - 27017:27017
-    volumes:
-      - cp_organization_mongodb_data:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME
-      - MONGO_INITDB_ROOT_PASSWORD
   cp-organization:
     image: gabriel0simpleg/cp-organization:latest
     container_name: cp-organization
@@ -28,5 +10,3 @@ services:
       - CP_ORGANIZATION_OPENID_CONNECT_CONFIG="/etc/cp_organization_config/openid_connect_config.json"
     volumes:
       - ./config:/etc/cp_organization_config
-volumes:
-  cp_organization_mongodb_data:

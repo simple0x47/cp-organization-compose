@@ -7,3 +7,30 @@ services:
       - CP_ORGANIZATION_SECRETS_MANAGER_ACCESS_TOKEN=${CP_ORGANIZATION_SECRETS_MANAGER_ACCESS_TOKEN}
       - CP_ORGANIZATION_AMQP_CONNECTION_SECRET=${CP_ORGANIZATION_AMQP_CONNECTION_SECRET}
       - CP_ORGANIZATION_MONGODB_CONNECTION_SECRET=${CP_ORGANIZATION_MONGODB_CONNECTION_SECRET}
+    links:
+      - rabbitmq
+      - mongodb
+    depends_on:
+      - rabbitmq
+      - mongodb
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER
+      - RABBITMQ_DEFAULT_PASS
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+volumes:
+  mongodb_data:

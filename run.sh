@@ -8,18 +8,22 @@ if [[ $CP_ENVIRONMENT -eq 0 ]]; then
   echo "Development mode"
   bws secret get "2a9bba72-68cd-4df4-8ade-b0a40110cffb" --access-token "$CP_ORGANIZATION_SECRETS_MANAGER_ACCESS_TOKEN" | jq -r '.value' >> ./env/dev.env
   export $(cat ./env/dev.env | xargs)
+  rm -f ./env/
 elif [[ $CP_ENVIRONMENT -eq 1 ]]; then
   echo "Github Actions mode"
   bws secret get "c3027aaf-5e20-4d8f-ac80-b0a401120ee9" --access-token "$CP_ORGANIZATION_SECRETS_MANAGER_ACCESS_TOKEN" | jq -r '.value' >> ./env/actions.env
   export $(cat ./env/actions.env | xargs)
+  rm -f ./env/
 elif [[ $CP_ENVIRONMENT -eq 2 ]]; then
   echo "Production mode"
   bws secret get "e0d1a3d9-30c1-4ead-ad96-b0a401123335" --access-token "$CP_ORGANIZATION_SECRETS_MANAGER_ACCESS_TOKEN" | jq -r '.value' >> ./env/prod.env
   export $(cat ./env/prod.env | xargs)
+  rm -f ./env/
 else
   echo "Default development mode"
   bws secret get "2a9bba72-68cd-4df4-8ade-b0a40110cffb" --access-token "$CP_ORGANIZATION_SECRETS_MANAGER_ACCESS_TOKEN" | jq -r '.value' >> ./env/dev.env
   export $(cat ./env/dev.env | xargs)
+  rm -f ./env/
 fi
 
 # Set initial credentials for RabbitMQ & MongoDB

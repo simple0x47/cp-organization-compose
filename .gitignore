@@ -1,1 +1,6 @@
 .DS_Store
+
+env/actions.env
+env/prod.env
+
+mongosh*

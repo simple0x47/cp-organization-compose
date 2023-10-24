@@ -44,13 +44,23 @@ fi
 
 if [[ $1 -eq 1 ]]; then
   echo "Initializing database..."
-  sleep 5
-  sh db_init.sh
+  
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    sleep 5s
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    sleep 5
+  fi
+
+  ./db_init.sh
 fi
 
 # CP-ORGANIZATION fails on the first start.
 
-sleep 1
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  sleep 2s
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  sleep 2
+fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo -E docker compose up -d

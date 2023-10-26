@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:6.0
+    container-name: dev-mongodb
+    ports:
+      - 27000:27017
+    volumes:
+      - lemongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DEV_MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${DEV_MONGO_INITDB_ROOT_PASSWORD}
+volumes:
+  lemongo:

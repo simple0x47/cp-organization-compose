@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ -n $1 ]]; then
+  cd "$1" || exit 1
+fi
+
 export DEV_MONGO_INITDB_ROOT_USERNAME=guest
 export DEV_MONGO_INITDB_ROOT_PASSWORD=guest
 
@@ -23,10 +27,12 @@ if [ ! -f ./mongosh ]; then
   fi
 fi
 
-if [[ $1 -eq 1 ]]; then
-  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  if [[ ! "$(sudo docker ps -a | grep dev-mongodb)" ]]; then
     sleep 3s
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
+  fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ ! "$(docker ps -a | grep dev-mongodb)" ]]; then
     sleep 3
   fi
 fi

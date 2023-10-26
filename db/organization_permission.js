@@ -2,7 +2,7 @@ db = db.getSiblingDB("cp_organization");
 
 db.organization_permission.createIndex(
     {
-        id: "text"
+        Id: "text"
     },
     {
         unique: true
@@ -13,55 +13,55 @@ db.organization_permission.insertMany(
     [
         // Organization permissions
         {
-            id: "read_org"
+            Id: "read_org"
         },
         {
-            id: "update_org"
+            Id: "update_org"
         },
         {
-            id: "delete_org"
+            Id: "delete_org"
         },
         {
-            id: "request_permission_org"
+            Id: "request_permission_org"
         },
 
         // Member permissions
         {
-            id: "read_member"
+            Id: "read_member"
         },
         {
-            id: "update_member"
+            Id: "update_member"
         },
         {
-            id: "delete_member"
+            Id: "delete_member"
         },
 
         // Invitation code permissions
         {
-            id: "create_invitation_code"
+            Id: "create_invitation_code"
         },
         {
-            id: "read_invitation_code"
+            Id: "read_invitation_code"
         },
         {
-            id: "update_invitation_code"
+            Id: "update_invitation_code"
         },
         {
-            id: "delete_invitation_code"
+            Id: "delete_invitation_code"
         },
 
         // Role permissions
         {
-            id: "create_role",
+            Id: "create_role",
         },
         {
-            id: "read_role",
+            Id: "read_role",
         },
         {
-            id: "update_role",
+            Id: "update_role",
         },
         {
-            id: "delete_role"
+            Id: "delete_role"
         }
     ]
 );

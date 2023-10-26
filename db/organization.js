@@ -2,10 +2,17 @@ db = db.getSiblingDB("cp_organization");
 
 db.organization.insertOne(
     {
-        country: "es",
-        name: "default",
-        address: "not your business",
-        permissions: [
+        Name: "default",
+        Address: {
+            Country: "ES",
+            Province: "Albacete",
+            City: "Villarrobledo",
+            Street: "Calle",
+            Number: "85",
+            Additional: "",
+            PostalCode: "02600"
+        },
+        Permissions: [
             "read_org",
             "update_org",
             "delete_org",
@@ -22,6 +29,6 @@ db.organization.insertOne(
             "update_role",
             "delete_role"
         ],
-        defaultOrganization: true
+        DefaultOrganization: true
     }
 );

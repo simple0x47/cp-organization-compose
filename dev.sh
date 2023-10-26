@@ -1,16 +1,12 @@
 #!/bin/bash
 
-if [[ $1 != 1 ]]; then
-  export DEV_MONGO_INITDB_ROOT_USERNAME=guest
-  export DEV_MONGO_INITDB_ROOT_PASSWORD=guest
+export DEV_MONGO_INITDB_ROOT_USERNAME=guest
+export DEV_MONGO_INITDB_ROOT_PASSWORD=guest
 
-  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    sudo docker compose -f dev.docker-compose.yaml stop
-    sudo -E docker compose -f dev.docker-compose.yaml up -d
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    docker compose -f dev.docker-compose.yaml stop
-    docker compose -f dev.docker-compose.yaml up -d
-  fi
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  sudo -E docker compose -f dev.docker-compose.yaml up -d
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  docker compose -f dev.docker-compose.yaml up -d
 fi
 
 if [ ! -f ./mongosh ]; then
@@ -26,12 +22,12 @@ if [ ! -f ./mongosh ]; then
     mv mongosh-2.0.1-darwin-arm64/bin/* ./
   fi
 fi
-  
-if [[ $1 != 1 ]]; then
+
+if [[ $1 -eq 1 ]]; then
   if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    sleep 5s
+    sleep 3s
   elif [[ "$OSTYPE" == "darwin"* ]]; then
-    sleep 5
+    sleep 3
   fi
 fi
 

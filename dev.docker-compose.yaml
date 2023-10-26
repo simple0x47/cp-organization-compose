@@ -1,8 +1,9 @@
 version: '3'
+name: dev-cp-organization-deps
 services:
   mongodb:
     image: mongo:6.0
-    container-name: dev-mongodb
+    container_name: dev-mongodb
     ports:
       - 27000:27017
     volumes:

@@ -22,6 +22,6 @@ db.organization.insertOne(
             "update_role",
             "delete_role"
         ],
-        default_organization: true
+        defaultOrganization: true
     }
 );

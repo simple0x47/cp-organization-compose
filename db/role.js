@@ -21,7 +21,7 @@ db.role.insertMany(
                 "update_role",
                 "delete_role"
             ],
-            default_admin: true
+            defaultAdmin: true
         },
         {
             name: "Member",
@@ -30,7 +30,7 @@ db.role.insertMany(
                 "read_member",
                 "read_role",
             ],
-            default_member: true
+            defaultMember: true
         }
     ]
 );

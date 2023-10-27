@@ -2,7 +2,6 @@ db = db.getSiblingDB("cp_organization");
 
 db.organization.insertOne(
     {
-        Id: "-1",
         Name: "default",
         Address: {
             Country: "ES",

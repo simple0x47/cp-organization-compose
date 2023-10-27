@@ -3,7 +3,6 @@ db = db.getSiblingDB("cp_organization");
 db.role.insertMany(
     [
         {
-            Id: "Admin",
             Name: "Admin",
             Permissions: [
                 "read_org",
@@ -25,7 +24,6 @@ db.role.insertMany(
             DefaultAdmin: true
         },
         {
-            Id: "Member",
             Name: "Member",
             Permissions: [
                 "read_org",

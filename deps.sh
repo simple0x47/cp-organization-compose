@@ -4,8 +4,13 @@ if [[ -n $1 ]]; then
   cd "$1" || exit 1
 fi
 
-export DEV_MONGO_INITDB_ROOT_USERNAME=guest
-export DEV_MONGO_INITDB_ROOT_PASSWORD=guest
+if [[ "$ASPNETCORE_ENVIRONMENT" == "Development" ]]; then
+  echo "Local development mode"
+  export $(cat ./local.env | xargs)
+elif [[ "$ASPNETCORE_ENVIRONMENT" == "Actions" ]]; then
+  echo "Actions development mode"
+  export $(cat ./actions.env | xargs)
+fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo -E docker compose -f dev.docker-compose.yaml up -d
@@ -38,4 +43,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 chmod +x mongosh
-./mongosh mongodb://localhost:27000 --username guest --password guest --file ./db/drop.js --file ./db/organization_permission.js --file ./db/organization.js --file ./db/role.js --file ./db/member.js --file ./db/invitation_code.js
+./mongosh "$ORGANIZATION_MONGODB_URI" --username "$ORGANIZATION_MONGODB_USER" --password "$ORGANIZATION_MONGODB_PASS" --file ./db/drop.js --file ./db/organization_permission.js --file ./db/organization.js --file ./db/role.js --file ./db/member.js --file ./db/invitation_code.js

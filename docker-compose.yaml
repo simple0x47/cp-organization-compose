@@ -4,24 +4,11 @@ services:
     image: gabriel0simpleg/cp-organization:latest
     container_name: cp-organization
     environment:
-      - CP_ORGANIZATION_SECRETS_MANAGER_ACCESS_TOKEN=${CP_ORGANIZATION_SECRETS_MANAGER_ACCESS_TOKEN}
-      - CP_ORGANIZATION_AMQP_CONNECTION_SECRET=${CP_ORGANIZATION_AMQP_CONNECTION_SECRET}
-      - CP_ORGANIZATION_MONGODB_CONNECTION_SECRET=${CP_ORGANIZATION_MONGODB_CONNECTION_SECRET}
+      - SECRETS_MANAGER_ACCESS_TOKEN=${SECRETS_MANAGER_ACCESS_TOKEN}
     links:
-      - rabbitmq
       - mongodb
     depends_on:
-      - rabbitmq
       - mongodb
-  rabbitmq:
-    image: rabbitmq:3.12-management
-    container_name: rabbitmq
-    ports:
-      - 5672:5672
-      - 15672:15672
-    environment:
-      - RABBITMQ_DEFAULT_USER
-      - RABBITMQ_DEFAULT_PASS
   mongodb:
     image: mongo:6.0
     container_name: mongodb

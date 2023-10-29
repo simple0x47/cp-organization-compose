@@ -32,14 +32,14 @@ if [ ! -f ./mongosh ]; then
   fi
 fi
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  if [[ ! "$(sudo docker ps -a | grep dev-mongodb)" ]]; then
-    sleep 5s
+if [[ -z ${ORGANIZATION_DEPS_FIRST_RUN+x} ]]; then
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      sleep 5s
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+      sleep 5
   fi
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  if [[ ! "$(docker ps -a | grep dev-mongodb)" ]]; then
-    sleep 5
-  fi
+
+  export ORGANIZATION_DEPS_FIRST_RUN="false"
 fi
 
 chmod +x mongosh

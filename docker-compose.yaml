@@ -8,6 +8,7 @@ services:
       - 8443:443
     environment:
       - SECRETS_MANAGER_ACCESS_TOKEN=${SECRETS_MANAGER_ACCESS_TOKEN}
+      - ASPNETCORE_URLS=http://*:80;https://*:443
     links:
       - mongodb
     depends_on:

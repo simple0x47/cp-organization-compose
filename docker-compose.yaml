@@ -13,6 +13,8 @@ services:
       - mongodb
     depends_on:
       - mongodb
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
   mongodb:
     image: mongo:6.0
     container_name: mongodb

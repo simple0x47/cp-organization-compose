@@ -34,11 +34,11 @@ fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   if [[ ! "$(sudo docker ps -a | grep dev-mongodb)" ]]; then
-    sleep 3s
+    sleep 5s
   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   if [[ ! "$(docker ps -a | grep dev-mongodb)" ]]; then
-    sleep 3
+    sleep 5
   fi
 fi
 

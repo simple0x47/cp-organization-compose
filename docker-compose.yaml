@@ -3,6 +3,9 @@ services:
   cp-organization:
     image: gabriel0simpleg/cp-organization:latest
     container_name: cp-organization
+    ports:
+      - 8000:80
+      - 8443:443
     environment:
       - SECRETS_MANAGER_ACCESS_TOKEN=${SECRETS_MANAGER_ACCESS_TOKEN}
     links:
